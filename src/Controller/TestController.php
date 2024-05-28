@@ -33,7 +33,7 @@ class TestController extends AbstractController
     {
         $event=["name"=>"sunil","age"=>"30"];
         $result=$this->eventDispatcher->dispatch($event, 'test.event');
-
+        echo "in test hello";
         dd($result);
         echo "in test function";
     }
