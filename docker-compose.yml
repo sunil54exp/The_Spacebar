@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  php_project1:
+    container_name: project1_php_apache
+    build:
+      context: ./docker
+      args:
+        - USER_ID=$USER_ID
+    volumes:
+      - ./:/var/www/project1
+      -  type: bind
+         source: ./docker/apache/apache-config.conf
+         target: /etc/apache2/sites-enabled/000-default.conf
+    ports:
+      - "8087:80"
+    extra_hosts:
+      - "project1.com.local:127.0.0.1"
+    
+    tty: true
+    networks:
+      - docker-net
+      
+networks:
+  docker-net:
+    name: highlow_docker-net
